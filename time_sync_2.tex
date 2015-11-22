@@ -1,12 +1,6 @@
-% LLNCStmpl.tex
-% Template file to use for LLNCS papers prepared in LaTeX
-%websites for more information: http://www.springer.com
-%http://www.springer.com/lncs
-
 \documentclass{llncs}
-%Use this line instead if you want to use running heads (i.e. headers on each page):
-%\documentclass[runningheads]{llncs}
 
+\usepackage{hyperref}
 
 \begin{document}
 \title{Time Synchronization II}
@@ -47,10 +41,24 @@
 %\end{abstract}
 
 \section{Protocol Introduction}
+% Maximum 1 page about the theoretical basics of the experiment.
+A sensor network is basically made of some sensor nodes that are linked together. To fulfil the main goals of the sensor network the time synchronisation of the network nodes are important.  For example it is useful to have the same time frames on each node to compare the measurements of each node. Or if the network is a mobile sensor network, the automagical localisation of each node could be demanded, wich can only be provided if the node have synchronised time. But also the management of the duty cycles of the nodes can only be meaningful if the nodes are in sync.\\
+The requirements for a good time synchronisation algorithm are amongst others precession, energy efficiency, a small memory footprint, scalability and robustness. It should be obvious that the time should be as exact as possible on every node. Because of the limited energy resources for each node, the algorithm should be as efficient as possible. Most of all the time synchronisation is not the main application of the node itself, so the algorithm not consume the most of the resources as computing time and energy. The same goes for the memory. The time synchronisation algorithm should be scalable in two ways. Firstly it has to be scalable on each device, that means it should run on nodes with very small resources. Secondly it should be scalable for a lot of devices in a sensor network, that means if more and more nodes are added to the network, the algorithm should run as robust as possible.\\
+\noindent This project report explains how we solved the problem of time synchronisation base on the Rate Based Synchronous Diffusion Algorithm\footnote{See lecture slide: V. Time Synchronization - 3.3.1 Diffusion-based Synchronization p. 29-30. This slides are based on the paper: Global Clock Synchronization
+in Sensor Networks by Qun Li and  Daniela Rus\cite{LiRus2006}}. The basic idea of the Rate Based Synchronous Diffusion Algorithm is to know all the visible nodes of one node and then to iterate of the known neighbour to determine the time offset via a round-trip synchronisation.\\
+In the methods section we would explain how we implemented this algorithm to achieve the synchronisation. Then we expose how our experimental setup looked like. In the section Measurement Procedure we show how we fulfilled the measurements. Wich results we got we would illustrate in the next paragraph. And finally we give a small conclusion about our work. 
 
 \section{Methods}
+%Especially, describe the methods used to realize the protocol (functions in the code and their functionality)
 
 \section{Experimental Setup}
+
+For the lecture `Sensor Network and Internet of things' each member got two sensor nodes called Telosb wich are assembled by Crossbow\footnote{The datasheet for the node can be found on: \url{http://www.willow.co.uk/TelosB_Datasheet.pdf}}. The nodes run an operating system called Contiki\footnote{TODO: more infos to add}.\\
+The assignment for the project was divided into two iterations. The first phase was to implement a prototype of the algorithm, wich should run on four or our nodes. In the second phase we had to adapt the software, that it can run on the TARWIS\footnote{TODO. Reference} network with about 40 nodes.
+
+\subsection{Prototype}
+
+\subsection{TRAWIS}
 
 \section{Measurement Procedure}
 
@@ -58,7 +66,7 @@
 
 \section{Conclusions}
 
-
+\bibliography{biblio}{}
 
 %The bibliography, done here without a bib file
 %This is the old BibTeX style for use with llncs.cls
@@ -71,13 +79,6 @@
 %\bibliographystyle{splncs03}
 %If you want to use a different BibTex style include [oribibl] in the document class line
 
-\begin{thebibliography}{1}
-%add each reference in here like this:
-\bibitem[RE1]{reference1}
-Author:
-Article/Book:
-Other info: (date) page numbers.
-\end{thebibliography}
 
 \end{document}
 
