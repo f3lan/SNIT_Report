@@ -5,12 +5,12 @@
 \usepackage{epstopdf}
 \usepackage{listings}
 \usepackage{caption}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{float}
 \usepackage{geometry}\geometry{
  a4paper,
- left=12em,
- right=12em
+ left=8em,
+ right=8em
 }
 
 \renewcommand{\lstlistingname}{Code}
@@ -63,7 +63,8 @@
 	showstringspaces=false,
 	basicstyle=\footnotesize\ttfamily,
 	numberstyle=\zebra{gray!50}{gray!10}{}\tiny,
-	keywordstyle=\color{blue},
+	keywordstyle=\color{red},
+	commentstyle=\color{OliveGreen},
 	captionpos=b,
 }
 
@@ -204,7 +205,7 @@ The assignment for the project was divided into two iterations. The first phase 
 
 \section{Measurement Procedure}
 In the beginning we inspected carefully each print statement in the console, but as further we came, the less feasible it got. Hence, we began to write parsers for different purposes which can in combination with some gnuplot\footnote{TODO: Reference} scripts nicely visualise the outcome of the synchronisation process. The endproducts of these parsers and scripts are shown as figures in the next few sections.
-\newpage
+
 \section{Results and Analysis}
 
 In this section we present some gathered results from our experiments, as well as some additional explanations and interpretations. The experiments consists of as less as four nodes in local execution and scales between 10 up to 40 nodes for the testbed runs. We run the experiment locally and on TARWIS with these three different configurations:
@@ -239,16 +240,10 @@ Important side mark for TARWIS results: It lies in the nature of a heavily used,
 \end{figure}
 
 \noindent Next, we analyse the clock value over time. In figure \ref{fig:local_time} we see vertically each nodes current clock value at a specific point in time (x-axis). The gaps are representing the random wait of the node, before he starts the next RTT request cycle. The random wait is a result of introducing some randomness, because we want a guarantee that the nodes would not infer each other in a repetitive way. We see that all lines are slowly pointing towards a common center line, we call this the cluster reference time (CRT). This CRT can be determined for each single node with respect to the neighbours and it is perfectly diagonal in any plot per definition. In the end it is our goal to ensure as accurate as possible that the CRT is the same for all nodes. Please consider, that the plots only visualise a small fraction of the synchronisation process inside a specific node (hence, it represents even a smaller field in the whole sensor network).\\
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.8]{images/FIG_04.eps}
-	\caption{Time series discovery of individual neighbours}
-	\label{fig:discovery}
-\end{figure}
-\noindent Nevertheless, we were also interested in the discovery time of the neighbours. In figure \ref{fig:discovery} we can see that in most cases all neighbours could be identified after 300 seconds. In some specific cases, this interval was much larger for some nodes. These nodes appear to have encountered a crowded channel, or poor signal strength in general.\\
+
+\noindent Nevertheless, we were also interested in the discovery time of the neighbours. We saw in our experiments, that  in most cases all neighbours could be identified after 300 seconds. In some specific cases, this interval was much larger for some nodes. These nodes appear to have encountered a crowded channel, or poor signal strength in general.\\
 
 \noindent For all runs we obtained a maximal accuracy around the value of alpha. This can easily be explained: The changes being made to each nodes clock are \code{[calculated\_mean\_skew * (1 / alpha)]} and the device doesn't contain a float\-ing-point unit (FPU), so the all skews smaller than 5 for an alpha set to 5 result in a skew change of 0.
-
 
 \section{Conclusions}
 
