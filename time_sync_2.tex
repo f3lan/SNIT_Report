@@ -8,8 +8,8 @@
 \usepackage{xcolor}
 \usepackage{geometry}\geometry{
  a4paper,
- left=13em,
- right=13em
+ left=12em,
+ right=12em
 }
 
 \renewcommand{\lstlistingname}{Code}
@@ -189,7 +189,7 @@ In contrast the LSS consist of mainly three approaches:
 \end{enumerate}
 Booting up a node results in loading two network protocol stacks, technically speaking, the unicast and the broadcast message handlers. Whilst the broadcast module disseminates the node's id along the neighbour nodes within the main program loop, the broadcast receiver block \code{recv\_bc(...)} recognises these messages and stores the corresponding neighbour in the node's neighbour table with \code{addNeighbour(unsigned short id)}. Further in the main loop the code requests RTTs via unicast messages from all neighbours stored in the neighbour table with \code{requestRTT(unsigned short id)}. As soon as they get replied, the \code{recv\_uc(...)} callback method extends the neighbour list with the received data via \code{saveRTT(unsigned short id, unsigned short rtt, signed long skew)}.
 After polling each neighbour, the own time gets adjusted by \code{updateMyTime()}. Accordingly, the saved RTT and skew data gets deleted and the process repeats again within the main program loop.
-Some more casual methods can be found in the code as well. For example there exist some led enabler and disabler methods with the corresponding callbacks (\code{enableLED(int color), disableLED(int color)}), as well as print methods for additional debugging \code{printNeighborList()}), or the \code{calcTimeDifference(unsigned short actualTimeOwn, unsigned short rttCorrTimeOther)} method used to calculate the time difference based on the time of two nodes with respect to tick overflows.
+Some more casual methods can be found in the code as well. For example there exist some led enabler and disabler methods with the corresponding callbacks (\code{enableLED(int color), disableLED(int color)}), as well as print methods for additional debugging \code{print\-Neighbor\-List()}), or the \code{calcTimeDifference(unsigned short actualTimeOwn, un\-sign\-ed short rttCorrTimeOther)} method used to calculate the time difference based on the time of two nodes with respect to tick overflows.
 
 \section{Experimental Setup}
 
@@ -229,7 +229,7 @@ Important side mark for TARWIS results: It lies in the nature of a heavily used,
 
 
 \noindent In figure \ref{fig:alpha} we can clearly see that the algorithm is able to reach convergence around 250 seconds with a default alpha value of 5. The small amplitudes in the figure are non-deterministic interferences within the sensor network. When we now enlarge the alpha value by a factor of 2, the algorithm performs worse, because the differences are only taken into account at small steps. Hence, the convergence phase takes almost four times as long.
-On the other hand when we decrease the time synchronisation update interval, we can see that the assimiliation of the nodes responds in an almost linear way to these changes, i. e. when we set the interval three times as high, the assimilation phase only takes roughly a third of the time. We visualize this in figure \ref{fig:update_intervals}. In addition, a spike can be identified where some nodes have been reset.\\
+On the other hand when we decrease the time synchronisation update interval, we can see that the assimilation of the nodes responds in an almost linear way to these changes, i. e. when we set the interval three times as high, the assimilation phase only takes roughly a third of the time. We visualise this in figure \ref{fig:update_intervals}. In addition, a spike can be identified where some nodes have been reset.\\
 
 
 
@@ -253,7 +253,7 @@ On the other hand when we decrease the time synchronisation update interval, we 
 
 
 
-\noindent For all runs we obtained a maximal accuracy around the value of alpha. This can easily be explained: The changes being made to each nodes clock are \code{[calculated\_mean\_skew * (1 / alpha)]} and the device doesn't contain a floating-point unit (FPU), so the all skews smaller than 5 for an alpha set to 5 result in a skew change of 0.
+\noindent For all runs we obtained a maximal accuracy around the value of alpha. This can easily be explained: The changes being made to each nodes clock are \code{[calculated\_mean\_skew * (1 / alpha)]} and the device doesn't contain a float\-ing-point unit (FPU), so the all skews smaller than 5 for an alpha set to 5 result in a skew change of 0.
 
 
 \section{Conclusions}
