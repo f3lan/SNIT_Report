@@ -182,7 +182,7 @@ We performed additional measurements with different alpha values apart from the 
 \caption{Time series convergence with respect to alpha values}
 \label{fig:alpha}
 \end{figure}
-\noindent In figure \ref{fig:alpha} we can clearly see that the algorithm is able to reach convergence around 250 seconds with a default alpha value of five. The small amplitudes in the figure are non-deterministic interferences within the sensor network. When we now enlarge the alpha value by a factor of two, the algorithm performs worse, because then the differences are only taken into account at small steps. Hence, the convergence phase takes almost four times as long.\\
+\noindent In figure \ref{fig:alpha} we can clearly see that the algorithm is able to reach convergence around 250 seconds with a default alpha value of five. The small amplitudes in the figure are non-deterministic interferences within the sensor network. When we now enlarge the alpha value by a factor of two, the algorithm performs worse, because then the differences are only taken into account at small steps. Hence, the convergence phase takes more than twice as long including some random update interval waits.\\
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.6]{images/FIG_02.eps}
